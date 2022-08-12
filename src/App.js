@@ -4,20 +4,20 @@ import MainPage from './pages/MainPage';
 import Login from './pages/Login';
 import './App.css';
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      password: '',
-      username: '',
-      redirect: false,
-    };
-  }
+  //   this.state = {
+  //     password: '',
+  //     username: '',
+  //     redirect: false,
+  //   };
+  // }
 
-  handleChange = ({ target }) => {
-    const { name, value } = target;
-    this.setState({ [name]: value });
-  }
+  // handleChange = ({ target }) => {
+  //   const { name, value } = target;
+  //   this.setState({ [name]: value });
+  // }
 
   // sendAction = () => {
   //   const { redirect } = this.state;
