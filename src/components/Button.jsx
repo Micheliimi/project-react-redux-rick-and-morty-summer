@@ -21,12 +21,12 @@ class Button extends Component {
 export default Button;
 
 Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  label: PropTypes.string,
   disabled: PropTypes.bool,
   data: PropTypes.string,
   className: PropTypes.string,
-};
+}.isRequired;
 
 Button.defaultProps = {
   data: '',

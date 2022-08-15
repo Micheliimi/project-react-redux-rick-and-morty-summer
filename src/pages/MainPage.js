@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Cards from '../components/Cards';
 import Header from '../components/Header';
-import { fetchCharacters } from '../actions';
+import { fetchCharacters } from '../redux/actions';
 
 class Mainpage extends React.Component {
   componentDidMount = () => {

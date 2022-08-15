@@ -18,12 +18,12 @@ class Cards extends Component {
   }
 }
 
-Cards.propTypes = {
-  characters: PropTypes.arrayOf.isRequired,
-};
-
 const mapStateToProps = (state) => ({
   characters: state.characters.allCharacters,
 });
+
+Cards.propTypes = {
+  characters: PropTypes.arrayOf.isRequired,
+};
 
 export default connect(mapStateToProps)(Cards);
