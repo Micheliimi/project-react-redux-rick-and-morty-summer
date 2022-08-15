@@ -1,40 +1,32 @@
 import React from 'react';
-import fetchAPI from '../services/data';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Cards from '../components/Cards';
 import Header from '../components/Header';
+import { fetchCharacters } from '../actions';
 
 class Mainpage extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      characters: [],
-    };
-  }
-
-  callAPI = async () => {
-    const result = await fetchAPI();
-    this.setState({
-      characters: result || [],
-    })
-    const { characters } = this.state;
-    console.log(characters);
-  }
-
   componentDidMount = () => {
-    this.callAPI();
+    const { fetchCharactersDispatch } = this.props;
+    fetchCharactersDispatch();
   }
 
   render() {
-    const { username} = this.props;
-    const { characters } = this.state;
     return (
       <div>
-        <Header username={ username }/>
-        <Cards characters={ characters }/>
+        <Header />
+        <Cards />
       </div>
-    )
+    );
   }
 }
 
-export default Mainpage;
+const mapDispatchToProps = (dispatch) => ({
+  fetchCharactersDispatch: () => dispatch(fetchCharacters()),
+});
+
+Mainpage.propTypes = {
+  fetchCharactersDispatch: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Mainpage);
