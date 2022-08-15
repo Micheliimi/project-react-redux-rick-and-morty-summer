@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addUser } from '../actions';
+import { addUser } from '../redux/actions';
 import Input from '../components/Input';
 import Button from '../components/Button';
 

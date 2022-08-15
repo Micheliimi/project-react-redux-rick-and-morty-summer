@@ -1,4 +1,4 @@
-import fetchAPI from '../services/data';
+import fetchAPI from '../../services/data';
 
 export const ADD_USER = 'ADD_USER';
 export const ADD_CHARACTERS = 'ADD_CHARACTERS';
