@@ -31,8 +31,9 @@ class Login extends React.Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div>
-        <div>
+      <div className="login-page">
+        <h1>Login</h1>
+        <div className="input-login">
           <Input
             label="Username: "
             type="text"
