@@ -13,8 +13,6 @@ class Login extends React.Component {
       password: '',
       username: '',
     };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
   sendAction = () => {
@@ -23,7 +21,7 @@ class Login extends React.Component {
     addUserDispatch(username);
   }
 
-  handleChange({ target }) {
+  handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
   }
