@@ -2,7 +2,6 @@ import { ADD_USER } from '../actions/index';
 
 const INITIAL_STATE = {
   username: '',
-  redirect: false,
 };
 
 function user(state = INITIAL_STATE, action) {
@@ -11,7 +10,6 @@ function user(state = INITIAL_STATE, action) {
     return {
       ...state,
       username: action.payload,
-      redirect: true,
     };
   default:
     return state;
