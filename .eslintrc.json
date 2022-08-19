@@ -17,6 +17,7 @@
   "rules": {
     "react/state-in-constructor": "off",
     "react/no-did-mount-set-state": "off",
-    "react/no-did-update-set-state": "warn"
+    "react/no-did-update-set-state": "warn",
+    "react-hooks/exhaustive-deps": "off"
   }
 }
