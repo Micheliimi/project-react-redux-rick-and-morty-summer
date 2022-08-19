@@ -1,76 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addUser } from '../actions';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { addUser } from '../redux/actions';
 import Input from '../components/Input';
 import Button from '../components/Button';
 
-class Login extends React.Component {
-  constructor() {
-    super();
+function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.state = {
-      email: '',
-      username: '',
-    };
+  const dispatch = useDispatch();
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+  // exemplo de uso do useHistory para redirecionar para a página de personagens (antes isso era feito através de um redirect)
+  const history = useHistory();
 
-  handleChange({ target }) {
-    const { name, value } = target;
-    this.setState({ [name]: value });
-  }
+  // sugestão de estado local e handleChange unificados
+  // const [loginInfo, setLoginInfo] = useState({
+  //   username: '',
+  //   password: '',
+  // });
+  //
+  // const handleChange = ({ target }) => {
+  //   const { name, value } = target;
+  //   setLoginInfo({
+  //     ...loginInfo,
+  //     [name]: value
+  //   });
+  // }
 
-  sendAction = () => {
-      const { redirect, username } = this.state;
-      const { addUserDispatch } = this.props;
-      this.setState(!redirect);
-      addUserDispatch(username);
-    }
+  const handleUsernameChange = ({ target: { value } }) => {
+    setUsername(value);
+  };
+  const handlePasswordChange = ({ target: { value } }) => {
+    setPassword(value);
+  };
 
-  render() {
-    // const { username, password } = this.state;
-    const { username, password, handleChange, sendAction } = this.props;
-    return (
-      <div>
-            <div>
-              <Input
-                label="Username: "
-                type="text"
-                onChange={ handleChange }
-                value={ username }
-                name="username"
-              />
-              <Input
-                label="Senha: "
-                type="password"
-                onChange={ handleChange }
-                value={ password }
-                name="password"
-              />
-            </div>
-            <Button
-              type="button"
-              label="Entrar"
-              onClick={ sendAction }
-            />
+  const handleClick = () => {
+    dispatch(addUser(username));
+
+    // após o dispatch, a aplicação é direcionada para a página de personagens
+    history.push('/personagens');
+  };
+
+  return (
+    <div className="login-page">
+      <h1>Login</h1>
+      <div className="input-login">
+        <Input
+          label="Username: "
+          type="text"
+          // caso seja usado um estado único
+          // onChange={ handleChange }
+          onChange={ handleUsernameChange }
+          value={ username }
+          name="username"
+        />
+        <Input
+          label="Senha: "
+          type="password"
+          // caso seja usado um estado único
+          // onChange={ handleChange }
+          onChange={ handlePasswordChange }
+          value={ password }
+          name="password"
+        />
       </div>
+      <Button
+        type="button"
+        label="Entrar"
+        onClick={ handleClick }
+      />
+    </div>
 
-    );
-  }
+  );
 }
 
-
-// Login.propTypes = {
-//   history: PropTypes.shape({
-//     push: PropTypes.func.isRequired,
-//   }).isRequired,
-//   addUserDispatch: PropTypes.func.isRequired,
-// };
-
-const mapDispatchToProps = (dispatch) => ({
-  addUserDispatch: (username) => dispatch(addUser(username))
-})
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

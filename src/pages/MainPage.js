@@ -1,40 +1,23 @@
-import React from 'react';
-import fetchAPI from '../services/data';
+import React, { useEffect } from 'react';
+// import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Cards from '../components/Cards';
 import Header from '../components/Header';
+import { fetchCharacters } from '../redux/actions';
 
-class Mainpage extends React.Component {
-  constructor() {
-    super();
+const Mainpage = () => {
+  const dispatch = useDispatch();
 
-    this.state = {
-      characters: [],
-    };
-  }
+  useEffect(() => {
+    dispatch(fetchCharacters());
+  }, []);
 
-  callAPI = async () => {
-    const result = await fetchAPI();
-    this.setState({
-      characters: result || [],
-    })
-    const { characters } = this.state;
-    console.log(characters);
-  }
-
-  componentDidMount = () => {
-    this.callAPI();
-  }
-
-  render() {
-    const { username} = this.props;
-    const { characters } = this.state;
-    return (
-      <div>
-        <Header username={ username }/>
-        <Cards characters={ characters }/>
-      </div>
-    )
-  }
-}
+  return (
+    <div>
+      <Header />
+      <Cards />
+    </div>
+  );
+};
 
 export default Mainpage;
